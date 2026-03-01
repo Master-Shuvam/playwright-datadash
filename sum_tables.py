@@ -14,7 +14,8 @@ async def main():
         for s in seeds:
             url = f"https://sanand0.github.io/tdsdata/table/?seed={s}"
             await page.goto(url)
-            await page.wait_for_load_state("networkidle")
+
+            await page.wait_for_selector("table")
 
             tables = await page.locator("table").all_inner_texts()
 
@@ -24,6 +25,6 @@ async def main():
 
         await browser.close()
 
-    print("TOTAL:", total)
+    print(f"TOTAL_SUM={total}")
 
 asyncio.run(main())
