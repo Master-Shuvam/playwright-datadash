@@ -15,16 +15,16 @@ async def main():
             url = f"https://sanand0.github.io/tdsdata/table/?seed={s}"
             await page.goto(url)
 
+            # wait until table appears
             await page.wait_for_selector("table")
 
-            tables = await page.locator("table").all_inner_texts()
+            text = await page.inner_text("body")
 
-            for t in tables:
-                nums = re.findall(r"-?\d+\.?\d*", t)
-                total += sum(float(n) for n in nums)
+            nums = re.findall(r"-?\d+\.?\d*", text)
+            total += sum(float(n) for n in nums)
 
         await browser.close()
 
-    print(f"TOTAL_SUM={total}")
+    print(f"TOTAL={total}")
 
 asyncio.run(main())
