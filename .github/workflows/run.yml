@@ -19,7 +19,7 @@ jobs:
       - name: install playwright
         run: |
           pip install playwright
-          python -m playwright install
+          python -m playwright install --with-deps
 
       - name: run script 23f3002495@ds.study.iitm.ac.in
         run: python sum_tables.py
