@@ -1,0 +1,25 @@
+name: datadash
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run-playwright:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: install python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: install playwright
+        run: |
+          pip install playwright
+          python -m playwright install
+
+      - name: run script 23f3002495@ds.study.iitm.ac.in
+        run: python sum_tables.py
